@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
-import django_heroku
+import django_on_heroku
 import cloudinary
 import cloudinary.uploader
 import cloudinary.api
@@ -31,7 +31,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 CORS_ALLOW_ALL_ORIGINS = True
-# CORS_ALLOWED_ORIGINS = ['http://localhost:3000', 'http://127.0.0.1:3000', 'https://forum-prod-frontend.herokuapp.com']
+# CORS_ALLOWED_ORIGINS = ['http://localhost:3000', 'http://127.0.0.1:3000',
+#                         ]
 
 # Application definition
 
@@ -46,10 +47,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'apps.posts',
-    'apps.carts',
-    'apps.items',
-    'apps.orders',
     'apps.users',
+    'apps.carts',
+    'apps.orders',
+    'apps.items',
     'cloudinary',
     'django_filters',
 ]
@@ -91,18 +92,9 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
 # Heroku Database
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'dch7n72frg031v',
-#         'USER': 'ldpelxievviuhf',
-#         'PORT': 5432,
-#         'HOST': 'ec2-23-23-164-251.compute-1.amazonaws.com',
-#         'PASSWORD': '8a9353d3c2aa7a6baaf128ed3c6fc0a4ede1cccfec1ccc0222e089e0871b8975',
-#     }
-# }
 
-# Local Database
+#Local Database
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -110,8 +102,21 @@ DATABASES = {
     }
 }
 
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'd4jsagdr6a0ioh',
+#         'USER': 'knvddeyyzyoglc',
+#         'PORT': 5432,
+#         'HOST': 'ec2-34-193-235-32.compute-1.amazonaws.com',
+#         'PASSWORD': '29e83e80bf5984518584420934d2e0e3430730db833317bc57d9633d20d05263',
+#     }
+# }
+
+
 # Heroku PostgreSQL Database
-django_heroku.settings(locals())
+django_on_heroku.settings(locals())
 
 
 # Password validation
@@ -162,11 +167,8 @@ cloudinary.config(
     cloud_name="dnzcxphxl",
     api_key="227674966312587",
     api_secret="f8-ZJ1UP04yAgpmuD4zo5EUFPq0",
-    secure=True
 )
 
 REST_FRAMEWORK = {
-    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
-    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
-    'PAGE_SIZE': 10
+    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend']
 }

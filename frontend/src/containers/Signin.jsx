@@ -1,31 +1,73 @@
-import React from 'react';
-import Cross from '../assets/img/cross01.svg';
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { signIn } from "../reducks/users/operations";
+import Home from "../containers/Home";
+import Cross from "../assets/img/cross01.svg";
 
-function SignIn() {
-    return (
-        <>
-            <section class="popup01">
-                <div class="popup-inner01">
-                    <img src={Cross} class="cross01" alt="" />
-                    <h1 class="heading01"> SuperSports </h1>
-                    <h2 class="head2">SIGN IN</h2>
-                    <div class="popup-input01">
-                        <input type="email" required placeholder="Email-address" />
-                        <br />
-                        <br />
-                        <input type="password" required placeholder="Password" />
-                        <br /> <br />
-                        <button>Join Us</button>
-                        <br />
-                        <br />
-                        <p>
-                            Already a Member? <a href="./login.html">Join Us</a>
-                        </p>
-                    </div>
-                </div>
-            </section>
-        </>
-    );
-}
+import { push } from "connected-react-router";
+import MainImage from "../components/Common/MainImage";
 
-export default SignIn;
+const Signin = () => {
+  const dispatch = useDispatch();
+
+  const closeButton = () => {
+    dispatch(push("/"));
+  };
+
+  const [email, setEmail] = useState(""),
+    [password, setPassword] = useState("");
+
+  const inputEmail = (event) => {
+    setEmail(event.target.value);
+  };
+
+  const inputPassword = (event) => {
+    setPassword(event.target.value);
+  };
+
+  const signInButton = () => {
+    dispatch(signIn(email, password));
+    setEmail("");
+    setPassword("");
+  };
+  return (
+    <>
+      <Home />
+      <section class="popup01">
+        <div class="popup-inner01">
+          <img src={Cross} class="cross01" onClick={closeButton} />
+          <h1 class="heading01"> SuperSports </h1>
+          <h2 class="head2">SIGN IN</h2>
+          <div class="popup-input01">
+            <input
+              type="email"
+              required
+              placeholder="Email-address"
+              name="email"
+              value={email}
+              onChange={inputEmail}
+            />
+            <br />
+            <br />
+            <input
+              type="password"
+              required
+              placeholder="Password"
+              value={password}
+              onChange={inputPassword}
+            />
+            <br /> <br />
+            <button onClick={signInButton}>Join Us</button>
+            <br />
+            <br />
+            <p>
+              Already a Member? <a href="/signup">Join Us</a>
+            </p>
+          </div>
+        </div>
+      </section>
+    </>
+  );
+};
+
+export default Signin;

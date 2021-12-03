@@ -1,12 +1,15 @@
-import React from 'react';
-import ImgBackground from '../../assets/img/background01.png';
+import React, { useState } from "react";
+import ImgBackground from "../../assets/img/background01.png";
 
-export default function MainImage() {
-    return (
-        <div>
-            <section class="background">
-                <img src={ImgBackground} alt="" />
-            </section>
-        </div>
-    );
-}
+const MainImage = () => {
+  const [checkUser, setCheckUser] = useState(false);
+  return (
+    <div>
+      <section class="background">
+        <img src={ImgBackground} alt="" />
+      </section>
+    </div>
+  );
+};
+
+export default MainImage;

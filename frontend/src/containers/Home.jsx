@@ -1,66 +1,39 @@
-import React from 'react';
-import Batball from '../assets/img/batball.png';
-import Foottball from '../assets/img/football.png';
-import Hocky from '../assets/img/hocky.png';
-import Badminton from '../assets/img/badminton.png';
+import React, { useEffect, useState } from "react";
+import Item from "../components/Common/Item";
+import { fetchItems } from "../reducks/items/operations";
+import { getItems } from "../reducks/items/selectors";
+import { useDispatch, useSelector } from "react-redux";
+import MainImage from "../components/Common/MainImage";
+import { fetchCarts } from "../reducks/carts/operations";
 
-function Home() {
-    return (
-        <>
-            <section class="text">
-                <ul class="food-items">
-                    <li class="row">
-                        <img src={Batball} class="food-image" alt />
-                        <div class="info">
-                            <div class="name">
-                                Nike <br /> Runner Orange
-                            </div>
-                            <div class="info-bottom">
-                                <div class="price">$ 380</div>
-                                <button class="add"> Add +</button>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="row">
-                        <img src={Foottball} class="food-image" alt />
-                        <div class="info">
-                            <div class="name">
-                                Nike <br /> Track Suit Pink
-                            </div>
-                            <div class="info-bottom">
-                                <div class="price">$ 1000</div>
-                                <button class="add"> Add +</button>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="row">
-                        <img src={Hocky} class="food-image" alt />
-                        <div class="info">
-                            <div class="name">
-                                Nike <br /> Flex Runner
-                            </div>
-                            <div class="info-bottom">
-                                <div class="price">$ 1000</div>
-                                <button class="add"> - 1 +</button>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="row">
-                        <img src={Badminton} class="food-image" alt />
-                        <div class="info">
-                            <div class="name">
-                                Nike <br /> Black track pants{' '}
-                            </div>
-                            <div class="info-bottom">
-                                <div class="price">$ 300</div>
-                                <button class="add"> Add +</button>
-                            </div>
-                        </div>
-                    </li>
-                </ul>
-            </section>
-        </>
-    );
-}
+const Home = () => {
+  const selector = useSelector((state) => state);
+  const dispatch = useDispatch();
+  const items = getItems(selector);
+
+  useEffect(() => {
+    dispatch(fetchItems());
+    if (localStorage.getItem("LOGIN_USER_KEY")) {
+      dispatch(fetchCarts());
+      console.log(items);
+    }
+  }, []);
+
+  return (
+    <>
+      <MainImage />
+      <section class="text">
+        <ul class="food-items">
+          {items &&
+            items.map((item) => (
+              <li>
+                <Item key={item.id} item={item} />
+              </li>
+            ))}
+        </ul>
+      </section>
+    </>
+  );
+};
 
 export default Home;

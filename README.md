@@ -1,11 +1,11 @@
-# Fueled Up
+# SuperSports
 ```
-Fueled Up App, this is a Prototype of a mini E-comerece app used for online shopping.
+SuperSports App, this is a Prototype of a mini E-comerece app used for online shopping.
 ```
 ## Live Demo
 **This App uses a Heroku free plan, so I am afraid that it takes time to load the pages.**
-Check out [FRONTEND LIVE DEMO](https://frontend-fueled.herokuapp.com)here!!
-Check out [API LIVE DEMO](https://backend-fueled.herokuapp.com) here!!
+Check out [FRONTEND LIVE DEMO]()here!!
+Check out [API LIVE DEMO]() here!!
 ## Tech used
 ```
 * Frontend : React & Redux

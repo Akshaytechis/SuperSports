@@ -45,7 +45,6 @@ class Order(models.Model):
         'Updated At', blank=True, auto_now=True
     )
 
-    
 
 class OrderItem(models.Model):
     class Meta(object):
@@ -66,5 +65,3 @@ class OrderItem(models.Model):
     updated_at = models.DateTimeField(
         'Updated At', blank=True, auto_now=True
     )
-
-    

@@ -1,48 +1,68 @@
-import React, { useEffect, useState } from "react";
-import CartItem from "../components/Common/CartItem";
-import { fetchCarts } from "../reducks/carts/operations";
-import { fetchItems } from "../reducks/items/operations";
-import { getCarts } from "../reducks/carts/selectors";
-import { useDispatch, useSelector } from "react-redux";
-import { getUser } from "../reducks/users/selectors";
-import { getItems } from "../reducks/items/selectors";
-import MainImage from "../components/Common/MainImage";
+import React, { useEffect } from 'react';
+import Batball from '../assets/img/batball.png';
+import Football from '../assets/img/football.png';
+import Hockey from '../assets/img/hocky.png';
+import Badminton from '../assets/img/badminton.png';
+import MainImage from '../components/Common/MainImage';
 
 const Cart = () => {
-	const selector = useSelector((state) => state);
-	const dispatch = useDispatch();
-	const carts = getCarts(selector);
-	const user = getUser(selector);
-	const items = getItems(selector);
-
-	useEffect(() => {
-		dispatch(fetchItems());
-		dispatch(fetchCarts());
-	}, []);
-
-	return (
-		<>
-			<MainImage />
-			<section class="content">
-				<ul class="items">
-					{
-						(carts,
-						items &&
-							carts.map((cart) => (
-								<li>
-									<CartItem
-										cart={cart.item}
-										cartId={cart.id}
-										key={cart.item.id}
-										quantity={cart.quantity}
-									/>
-								</li>
-							)))
-					}
-				</ul>
-			</section>
-		</>
-	);
+    return (
+        <>
+            <MainImage />
+            <section class="text">
+                <ul class="food-items">
+                    <li class="row">
+                        <img src={Batball} class="food-image" alt />
+                        <div class="info">
+                            <div class="name">
+                                Nike <br /> Cricket Bat
+                            </div>
+                            <div class="info-bottom">
+                                <div class="price">$ 380</div>
+                                <button class="add"> Add +</button>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="row">
+                        <img src={Football} class="food-image" alt />
+                        <div class="info">
+                            <div class="name">
+                                Nike <br /> Football
+                            </div>
+                            <div class="info-bottom">
+                                <div class="price">$ 1000</div>
+                                <button class="add"> Add +</button>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="row">
+                        <img src={Hockey} class="food-image" alt />
+                        <div class="info">
+                            <div class="name">
+                                Nike <br /> Hockey Stick
+                            </div>
+                            <div class="info-bottom">
+                                <div class="price">$ 1000</div>
+                                <button class="add"> - 1 +</button>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="row">
+                        <img src={Badminton} class="food-image" alt />
+                        <div class="info">
+                            <div class="name">
+                                Nike <br /> Badminton
+                            </div>
+                            <div class="info-bottom">
+                                <div class="price">$ 300</div>
+                                <button class="add"> Add +</button>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </section>
+        </>
+    );
 };
 
 export default Cart;

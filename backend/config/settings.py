@@ -31,7 +31,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 CORS_ALLOW_ALL_ORIGINS = True
-# CORS_ALLOWED_ORIGINS = ['http://localhost:3000', 'http://127.0.0.1:3000', 'https://frontend-electric-views.herokuapp.com']
+# CORS_ALLOWED_ORIGINS = ['http://localhost:3000', 'http://127.0.0.1:3000', 'https://forum-prod-frontend.herokuapp.com']
 
 # Application definition
 
@@ -46,10 +46,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'apps.posts',
-    'apps.users', 
-    'apps.carts', 
-    'apps.orders',
+    'apps.carts',
     'apps.items',
+    'apps.orders',
+    'apps.users',
     'cloudinary',
     'django_filters',
 ]
@@ -91,16 +91,16 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
 # Heroku Database
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'd620opilik16q4',
-        'USER': 'gxfkylcfkujgcc',
-        'PORT': 5432,
-        'HOST': 'ec2-18-208-102-44.compute-1.amazonaws.com',
-        'PASSWORD': '3717b85156b36422fd5e6ee17b246e3d91aee636cfac04f0d8fe2feeef20b240',
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'dch7n72frg031v',
+#         'USER': 'ldpelxievviuhf',
+#         'PORT': 5432,
+#         'HOST': 'ec2-23-23-164-251.compute-1.amazonaws.com',
+#         'PASSWORD': '8a9353d3c2aa7a6baaf128ed3c6fc0a4ede1cccfec1ccc0222e089e0871b8975',
+#     }
+# }
 
 # Local Database
 DATABASES = {
@@ -159,12 +159,14 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 cloudinary.config(
-    cloud_name="dxxt0fhlz",
-    api_key="541361799257351",
-    api_secret="S_QpK3Reb4defi1dc-Hm6oWYQnk",
+    cloud_name="dnzcxphxl",
+    api_key="227674966312587",
+    api_secret="f8-ZJ1UP04yAgpmuD4zo5EUFPq0",
     secure=True
 )
 
 REST_FRAMEWORK = {
-    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend']
+    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 10
 }

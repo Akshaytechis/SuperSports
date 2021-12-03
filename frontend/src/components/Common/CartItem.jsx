@@ -1,57 +1,23 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import {
-	addCart,
-	increaseCart,
-	decreaseCart,
-} from "../../reducks/carts/operations";
-import { getCarts, getSubtotal } from "../../reducks/carts/selectors";
+import React from 'react';
 
-const CartItem = ({ cart, quantity, cartId }) => {
-	const selector = useSelector((state) => state);
-	const dispatch = useDispatch();
-	const carts = getCarts(selector);
-	const subtotal = getSubtotal(selector);
-
-	const clickPlusCart = () => {
-		dispatch(increaseCart(cartId));
-	};
-	const clickMinusCart = () => {
-		dispatch(decreaseCart(cartId));
-	};
-
-	useEffect(() => {
-		console.log(cart.image);
-		console.log(cart);
-		console.log(carts);
-	}, []);
-
-	return (
-		<>
-			<div>
-				<img
-					src={"https://res.cloudinary.com/dxxt0fhlz/" + cart.image}
-					class="item-image"
-					alt=""
-				/>
-			</div>
-			<div class="info">
-				<div class="name">{cart.name}</div>
-				<div class="info-bottom">
-					<div class="price">$ {cart.price}</div>
-					<div class="number">
-						<span class="minus" onClick={clickMinusCart}>
-							－
-						</span>
-						<span class="count">{quantity}</span>
-						<span class="plus" onClick={clickPlusCart}>
-							+
-						</span>
-					</div>
-				</div>
-			</div>
-		</>
-	);
-};
+function CartItem() {
+    return (
+        <>
+            <li class="row">
+                <img src="img/batball.png" class="food-image" alt />
+                <div class="info">
+                    <div class="name">
+                        Nike <br />
+                        Runner Orange
+                    </div>
+                    <div class="info-bottom">
+                        <div class="price">$ 380</div>
+                        <button class="add">Add +</button>
+                    </div>
+                </div>
+            </li>
+        </>
+    );
+}
 
 export default CartItem;
